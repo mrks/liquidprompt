@@ -63,6 +63,9 @@ LP_COLOR_ERR="$PURPLE"
 LP_COLOR_MARK="$BOLD_WHITE"     # as user
 LP_COLOR_MARK_ROOT="$BOLD_RED"  # as root
 
+# Screen info
+LP_COLOR_SCREEN="$BOLD_WHITE"
+
 # Current user
 LP_COLOR_USER_LOGGED=""           # user who logged in
 LP_COLOR_USER_ALT="$BOLD"         # user but not the one who logged in

@@ -236,6 +236,7 @@ _lp_source_config()
     LP_COLOR_ERR=${LP_COLOR_ERR:-$PURPLE}
     LP_COLOR_MARK=${LP_COLOR_MARK:-$BOLD_WHITE}
     LP_COLOR_MARK_ROOT=${LP_COLOR_MARK_ROOT:-$BOLD_RED}
+    LP_COLOR_SCREEN=${LP_COLOR_SCREEN:-$BOLD_WHITE}
     LP_COLOR_USER_LOGGED=${LP_COLOR_USER_LOGGED:-""}
     LP_COLOR_USER_ALT=${LP_COLOR_USER_ALT:-$BOLD}
     LP_COLOR_USER_ROOT=${_ROOT:-$BOLD_YELLOW}
@@ -616,6 +617,15 @@ _lp_return_value()
     fi
 }
 
+#############################
+# show if running in screen #
+#############################
+
+_lp_screen()
+{
+    [[ "$TERM" != screen ]] && return
+    echo -ne screen
+}
 
 ######################
 # VCS branch display #
@@ -1272,6 +1282,11 @@ _lp_set_prompt()
         esac
     fi
 
+    LP_SCREEN="$(_lp_screen)"
+    if [[ -n "$LP_SCREEN" ]] ; then
+        LP_SCREEN=$(_lp_sl "${LP_COLOR_SCREEN}${LP_SCREEN}${NO_COL}")
+    fi
+
     if [[ -z $LP_PS1 ]] ; then
         # add title escape time, jobs, load and battery
         PS1="${LP_PS1_PREFIX}${LP_TIME}${LP_BATT}${LP_LOAD}${LP_JOBS}"
@@ -1292,7 +1307,7 @@ _lp_set_prompt()
             [[ "$LP_ENABLE_VCS_ROOT" = "1" ]] && PS1="${PS1}${LP_VCS}"
         fi
         # add return code and prompt mark
-        PS1="${PS1}${LP_ERR}${LP_MARK}"
+        PS1="${PS1}${LP_SCREEN}${LP_ERR}${LP_MARK}"
 
         # "invisible" parts
 

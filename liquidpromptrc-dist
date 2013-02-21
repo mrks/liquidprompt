@@ -90,6 +90,10 @@ LP_ENABLE_BZR=1
 # Recommended value is 0
 LP_ENABLE_TIME=0
 
+# Show an info message if currently running in screen
+# Recommended value is 1
+LP_ENABLE_SCREEN=1
+
 # Use the liquid prompt as the title of the terminal window
 # This may not work properly on exotic terminals, thus the
 # recommended value is 0
