@@ -16,6 +16,7 @@
 # LP_ERR last error code
 # LP_MARK prompt mark
 # LP_TIME current time
+# LP_RUNTIME runtime of last command
 # LP_PS1_PREFIX user-defined general-purpose prefix (default set a generic prompt as the window title)
 
 # Remember that most features come with their corresponding colors,
@@ -24,7 +25,7 @@
 # add time, jobs, load and battery
 LP_PS1="${LP_PS1_PREFIX}${LP_TIME}${LP_BATT}${LP_LOAD}${LP_JOBS}"
 # add user, host and permissions colon
-LP_PS1="${LP_PS1}[${LP_USER}${LP_HOST}${LP_PERM}${LP_SCREEN}bla"
+LP_PS1="${LP_PS1}[${LP_USER}${LP_HOST}${LP_PERM}${LP_SCREEN}"
 
 # if not root
 if [[ "$EUID" -ne "0" ]]
@@ -40,7 +41,7 @@ else
     [[ "$LP_ENABLE_VCS_ROOT" = "1" ]] && LP_PS1="${LP_PS1}${LP_VCS}"
 fi
 # add return code and prompt mark
-LP_PS1="${LP_PS1}${LP_ERR}${LP_MARK}"
+LP_PS1="${LP_PS1}${LP_RUNTIME}${LP_ERR}${LP_MARK}"
 
 # "invisible" parts
 # Get the current prompt on the fly and make it a title
