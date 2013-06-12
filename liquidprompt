@@ -1061,7 +1061,11 @@ _lp_runtime()
     [[ "$LP_ENABLE_RUNTIME" != 1 ]] && return
     if [[ $LP_RUNTIME_SECONDS -ge $LP_RUNTIME_THRESHOLD ]]
     then
-        echo -ne "${LP_COLOR_RUNTIME}${LP_RUNTIME_SECONDS}s${NO_COL}"
+        echo -ne "${LP_COLOR_RUNTIME}"
+        [[ "$LP_RUNTIME_SECONDS" -ge 3600 ]] && echo -ne `expr $LP_RUNTIME_SECONDS / 3600`h
+        [[ "$LP_RUNTIME_SECONDS" -ge 60 ]] && echo -ne `expr $LP_RUNTIME_SECONDS / 60`m
+        [[ "$LP_RUNTIME_SECONDS" -ge 2 ]] && echo -ne `expr $LP_RUNTIME_SECONDS % 60`s
+        echo -ne "${NO_COL}"
     fi
 }
 
